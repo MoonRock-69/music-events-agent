@@ -43,7 +43,7 @@ class TicketmasterScraper:
                     print(f"DEBUG: Found {len(data.get('_embedded', {}).get('events', []))} events for {artist}")
                     return self.parse_events(data, artist)
                 else:
-                print(f"DEBUG: API returned status {response.status} for {artist}")
+                    print(f"DEBUG: API returned status {response.status} for {artist}")
         except Exception as e:
             print(f"Error fetching events for {artist}: {e}")
             
@@ -111,5 +111,6 @@ class TicketmasterScraper:
                 
 
         return events
+
 
 
