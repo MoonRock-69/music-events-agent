@@ -31,7 +31,7 @@ TARGET_ARTISTS = [
     "Calvin Harris", "Hardwell", "Dimitri Vegas", "Dub Pistols",
     "Fisher", "Charlotte de Witte", "Carl Cox", "Adam Beyer",
     "Amelie Lens", "Tale Of Us", "Boris Brejcha", "Kolsch", 
-    "Swedish House Mafia"
+    "Swedish House Mafia", "Debby Friday"
 ]
 
 # Konfiguracja bazy danych
@@ -343,6 +343,7 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
 
 
