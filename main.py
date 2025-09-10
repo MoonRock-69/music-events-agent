@@ -23,10 +23,15 @@ app = FastAPI(title="Music Events Agent", description="Agent dla eventów muzyki
 
 # Współrzędne Wrocławia jako punkt centralny
 WROCLAW_COORDS = (51.1079, 17.0385)
-MAX_DISTANCE_KM = 700
+MAX_DISTANCE_KM = 1000
 
 # Lista monitorowanych artystów
-TARGET_ARTISTS = ["Debby Friday"]
+TARGET_ARTISTS = ["Gorgon City", "Rivo", "Lynnic", "Tiësto", "Fisher", 
+                  "David Guetta", "Lost Frequencies", "Disclosure", 
+                  "Meduza", "Calvin Harris", "Fred again", "Duke Dumont", 
+                  "James Hayden", "Rüfüs Du Sol", "James Hype", "HVME", 
+                  "CamelPhat", "Acraze", "ZHU", "Roger Sanchez", 
+                  "Rudimental", "Klingande", "Kygo"]
 
 # Konfiguracja bazy danych
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -337,6 +342,7 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
 
 
