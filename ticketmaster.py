@@ -6,7 +6,7 @@ from geopy.distance import geodesic
 
 # Współrzędne Wrocławia jako punkt centralny
 WROCLAW_COORDS = (51.1079, 17.0385)
-MAX_DISTANCE_KM = 700
+MAX_DISTANCE_KM = 1000
 
 class TicketmasterScraper:
     def __init__(self):
@@ -30,7 +30,7 @@ class TicketmasterScraper:
         params = {
             "apikey": self.api_key,
             "keyword": artist,
-            "size": 20,
+            "size": 50,
             "countryCode": "PL,DE,CZ,SK",
             "classificationName": "Music",
             "sort": "date,asc"
@@ -104,4 +104,5 @@ class TicketmasterScraper:
                 print(f"Error parsing event: {e}")
                 continue
                 
+
         return events
