@@ -13,6 +13,7 @@ import json
 from geopy.distance import geodesic
 from geopy.geocoders import Nominatim
 import logging
+from ticketmaster import TicketmasterScraper
 
 # Konfiguracja logowania
 logging.basicConfig(level=logging.INFO)
@@ -312,9 +313,13 @@ async def manual_scrape():
         # Scraping z różnych źródeł
         eventim_pl_events = await scraper.scrape_eventim_pl()
         eventim_de_events = await scraper.scrape_eventim_de()
-        
-        all_events = eventim_pl_events + eventim_de_events
-        
+
+ 	# Scraping z Ticketmaster
+	tm_scraper = TicketmasterScraper()
+	ticketmaster_events = await tm_scraper.scrape_events(TARGET_ARTISTS)
+
+	all_events = eventim_pl_events + eventim_de_events + ticketmaster_events
+      
         # Zapisz do bazy danych
         await save_events_to_db(all_events)
         
