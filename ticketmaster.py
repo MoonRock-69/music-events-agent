@@ -30,7 +30,7 @@ class TicketmasterScraper:
         params = {
             "apikey": self.api_key,
             "keyword": artist,
-            "size": 50,
+            "size": 100,
             "countryCode": "PL,DE,CZ,SK",
             "classificationName": "Music",
             "sort": "date,asc"
@@ -40,7 +40,10 @@ class TicketmasterScraper:
             async with session.get(self.base_url, params=params) as response:
                 if response.status == 200:
                     data = await response.json()
+                    print(f"DEBUG: Found {len(data.get('_embedded', {}).get('events', []))} events for {artist}")
                     return self.parse_events(data, artist)
+                else:
+                print(f"DEBUG: API returned status {response.status} for {artist}")
         except Exception as e:
             print(f"Error fetching events for {artist}: {e}")
             
@@ -77,7 +80,9 @@ class TicketmasterScraper:
                         
                         if lat and lon:
                             distance = geodesic(WROCLAW_COORDS, (lat, lon)).kilometers
+                            print(f"DEBUG: {city} distance: {distance}km")
                             if distance > MAX_DISTANCE_KM:
+                                print(f"DEBUG: Skipping {city} - too far ({distance}km)")
                                 continue
                             
                             coordinates = (lat, lon)
@@ -106,3 +111,4 @@ class TicketmasterScraper:
                 
 
         return events
+
