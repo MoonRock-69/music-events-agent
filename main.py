@@ -315,10 +315,10 @@ async def manual_scrape():
         eventim_de_events = await scraper.scrape_eventim_de()
 
  	# Scraping z Ticketmaster
-	tm_scraper = TicketmasterScraper()
-	ticketmaster_events = await tm_scraper.scrape_events(TARGET_ARTISTS)
+    tm_scraper = TicketmasterScraper()
+    ticketmaster_events = await tm_scraper.scrape_events(TARGET_ARTISTS)
 
-	all_events = eventim_pl_events + eventim_de_events + ticketmaster_events
+    all_events = eventim_pl_events + eventim_de_events + ticketmaster_events
       
         # Zapisz do bazy danych
         await save_events_to_db(all_events)
@@ -344,3 +344,4 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
