@@ -26,7 +26,7 @@ WROCLAW_COORDS = (51.1079, 17.0385)
 MAX_DISTANCE_KM = 1000
 
 # Lista monitorowanych artystów
-TARGET_ARTISTS = ["Gorgon City", "Rivo", "Lynnic", "Tiësto", "Fisher", 
+TARGET_ARTISTS = ["Debby Friday", "Gorgon City", "Rivo", "Lynnic", "Tiësto", "Fisher", 
                   "David Guetta", "Lost Frequencies", "Disclosure", 
                   "Meduza", "Calvin Harris", "Fred again", "Duke Dumont", 
                   "James Hayden", "Rüfüs Du Sol", "James Hype", "HVME", 
@@ -342,6 +342,7 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
 
 
