@@ -313,29 +313,27 @@ async def manual_scrape():
         # Scraping z różnych źródeł
         eventim_pl_events = await scraper.scrape_eventim_pl()
         eventim_de_events = await scraper.scrape_eventim_de()
-
- 	# Scraping z Ticketmaster
-    tm_scraper = TicketmasterScraper()
-    ticketmaster_events = await tm_scraper.scrape_events(TARGET_ARTISTS)
-
-    all_events = eventim_pl_events + eventim_de_events + ticketmaster_events
-      
+        
+        # Scraping z Ticketmaster
+        tm_scraper = TicketmasterScraper()
+        ticketmaster_events = await tm_scraper.scrape_events(TARGET_ARTISTS)
+        
+        all_events = eventim_pl_events + eventim_de_events + ticketmaster_events
+        
         # Zapisz do bazy danych
         await save_events_to_db(all_events)
         
         return {
             "message": "Scraping completed successfully",
-            "total_events_found": len(all_events),
-            "eventim_pl": len(eventim_pl_events),
-            "eventim_de": len(eventim_de_events)
+            "total_events_found": len(all_events)
         }
-    
+        
     except Exception as e:
-        logger.error(f"Scraping error: {e}")
-        raise HTTPException(status_code=500, detail=f"Scraping failed: {str(e)}")
-    
-    finally:
-        await scraper.close_session()
+        logger.error(f"Error during scraping: {e}")
+        return {
+            "message": f"Scraping failed: {str(e)}",
+            "total_events_found": 0
+        }
 
 # Serve static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -344,4 +342,5 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
