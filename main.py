@@ -28,9 +28,10 @@ MAX_DISTANCE_KM = 700
 # Lista monitorowanych artystów
 TARGET_ARTISTS = [
     "Tiësto", "David Guetta", "Martin Garrix", "Armin van Buuren",
-    "Calvin Harris", "Hardwell", "Dimitri Vegas & Like Mike",
+    "Calvin Harris", "Hardwell", "Dimitri Vegas", "Dub Pistols",
     "Fisher", "Charlotte de Witte", "Carl Cox", "Adam Beyer",
-    "Amelie Lens", "Tale Of Us", "Boris Brejcha", "Kolsch"
+    "Amelie Lens", "Tale Of Us", "Boris Brejcha", "Kolsch", 
+    "Swedish House Mafia"
 ]
 
 # Konfiguracja bazy danych
@@ -342,5 +343,6 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
 
