@@ -26,13 +26,7 @@ WROCLAW_COORDS = (51.1079, 17.0385)
 MAX_DISTANCE_KM = 700
 
 # Lista monitorowanych artystów
-TARGET_ARTISTS = [
-    "Tiësto", "David Guetta", "Martin Garrix", "Armin van Buuren",
-    "Calvin Harris", "Hardwell", "Dimitri Vegas", "Dub Pistols",
-    "Fisher", "Charlotte de Witte", "Carl Cox", "Adam Beyer",
-    "Amelie Lens", "Tale Of Us", "Boris Brejcha", "Kolsch", 
-    "Swedish House Mafia", "Debby Friday"
-]
+TARGET_ARTISTS = ["Debby Friday"]
 
 # Konfiguracja bazy danych
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -343,6 +337,7 @@ if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
+
 
 
 
